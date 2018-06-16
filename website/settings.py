@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 # 设置数据库为MySql数据库
 DATABASE_ENGINE = 'django.db.backends.mysql'
-MYSQL_DATABASE = 'pyhacker'
+MYSQL_DATABASE = 'transmission_line'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = 'syy83753051'
 MYSQL_HOST = '127.0.0.1'
