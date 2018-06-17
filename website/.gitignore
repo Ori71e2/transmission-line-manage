@@ -5,3 +5,4 @@
 *.egg-info
 *.pyc
 _pycache_/*.pyc
+mysql.json

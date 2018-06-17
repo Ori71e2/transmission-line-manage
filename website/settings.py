@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,14 +32,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 使用自定义的管理页面
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'backend',   # 新建App 
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,12 +83,25 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 # 设置数据库为MySql数据库
+# 配置写在一个json文件中， 注意文件路径
 DATABASE_ENGINE = 'django.db.backends.mysql'
-MYSQL_DATABASE = 'transmission_line'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'syy83753051'
-MYSQL_HOST = '127.0.0.1'
-MYSQL_PORT = '3306'
+
+MYSQL_SETITNG =  json.load(open(BASE_DIR+"/website/mysql.json", encoding='utf-8'))
+MYSQL_DATABASE = MYSQL_SETITNG['database']
+MYSQL_USER = MYSQL_SETITNG['user']
+MYSQL_PASSWORD = MYSQL_SETITNG['password']
+MYSQL_HOST = MYSQL_SETITNG['host']
+MYSQL_PORT = MYSQL_SETITNG['port']
+
+# 连接后设置数据编码
+INIT_COMMAND =  'set character_set_client = utf8mb4,' \
+                'character_set_server = utf8mb4,' \
+                'character_set_connection = utf8mb4,' \
+                'character_set_database = utf8mb4,' \
+                'character_set_results = utf8mb4,' \
+                'collation_connection = utf8mb4_general_ci,' \
+                'collation_database = utf8mb4_general_ci,' \
+                'collation_server = utf8mb4_general_ci;'
 DATABASES = {
     'default': {
         'ENGINE': DATABASE_ENGINE,
@@ -93,8 +110,10 @@ DATABASES = {
         'PASSWORD': MYSQL_PASSWORD,
         'HOST': MYSQL_HOST,
         'PORT': MYSQL_PORT,
+        'OPTIONS': {
+            'init_command': INIT_COMMAND
+        },
     }
-
 }
 
 

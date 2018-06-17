@@ -12,9 +12,24 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import url, include
 from django.views.generic import TemplateView  
+import views
+
+import json
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+account = json.load(open(BASE_DIR+"/backend/urls/account_urls.json", encoding='utf-8'))
+account_urls = account['urls']
+print(account_urls)
+for i in range(len(account_urls)):
+    print(account_urls[i])
+    print(eval(account_urls[i]))
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^$', TemplateView.as_view(template_name="index.html"))
 ]
+
+
