@@ -15,10 +15,10 @@ Including another URLconf
 
 from django.urls import path,re_path, include
 from django.views.generic import TemplateView  
-from . import views
-from   account.account import index
+
+from urls  import urls
 urlpatterns = [
-    re_path(r'^$', index)
+    re_path(r'^$', TemplateView.as_view(template_name="index.html"))
 ]
 
 
