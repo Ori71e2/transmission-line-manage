@@ -14,11 +14,19 @@ Including another URLconf
 """
 
 from django.urls import path,re_path, include
+from django.contrib import admin
+
 from django.views.generic import TemplateView  
+from modules_urls.account_urls import urlpatterns as account_urlpatterns
 from . import views
-from   account.account import index
+from  modules.account.account import index
 urlpatterns = [
-    re_path(r'^$', index)
-]
+    path('admin/', admin.site.urls),
+    re_path(r'^$', index),
+]   + account_urlpatterns \
+    + account_urlpatterns
+print("url")
+#print(account_urlpatterns)
 
-
+#urlpatterns = urlpatterns + account_urlpatterns
+print(urlpatterns)

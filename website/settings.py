@@ -62,7 +62,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'website.urls'
+#ROOT_URLCONF = 'website.urls'
+# 重新设置 ROOT_URLCONF 为一级，为了我们自己的定制
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -110,6 +112,7 @@ INIT_COMMAND =  'set character_set_client = utf8mb4,' \
                 'collation_connection = utf8mb4_general_ci,' \
                 'collation_database = utf8mb4_general_ci,' \
                 'collation_server = utf8mb4_general_ci;'
+
 DATABASES = {
     'default': {
         'ENGINE': DATABASE_ENGINE,
@@ -119,7 +122,7 @@ DATABASES = {
         'HOST': MYSQL_HOST,
         'PORT': MYSQL_PORT,
         'OPTIONS': {
-            'init_command': INIT_COMMAND
+            #'init_command': INIT_COMMAND
         },
     }
 }
