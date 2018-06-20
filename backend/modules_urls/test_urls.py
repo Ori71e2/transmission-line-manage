@@ -14,20 +14,13 @@ Including another URLconf
 """
 
 from django.urls import path,re_path, include
-from django.contrib import admin
-
 from django.views.generic import TemplateView  
-# from modules_urls.account_urls import urlpatterns as account_urlpatterns
-#from modules_urls import account_urls, test_urls
-from . import modules_urls
-from . import views
+from modules import account
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    re_path(r'^$', views.index),
-]   + modules_urls.account_urls \
-    + modules_urls.test_urls
+    # 一级路径必须带/结尾
+    re_path(r'^test/$', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^test/index$', account.register)
+]
 
 
-print("url")
-print(urlpatterns)

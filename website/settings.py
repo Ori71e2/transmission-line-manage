@@ -21,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # 添加模块搜索路径
-sys.path.append(os.path.join(BASE_DIR, 'apps/common_modules'))
 sys.path.append(os.path.join(BASE_DIR, 'backend'))
 sys.path.append(os.path.join(BASE_DIR, 'backend/modules'))
 

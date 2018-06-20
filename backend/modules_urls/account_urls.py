@@ -15,12 +15,12 @@ Including another URLconf
 
 from django.urls import path,re_path, include
 from django.views.generic import TemplateView  
-from  modules.account.account import index
+from modules import account
 
 urlpatterns = [
     # 一级路径必须带/结尾
     re_path(r'^account/$', TemplateView.as_view(template_name="index.html")),
-    re_path(r'^account/index$', index)
+    re_path(r'^account/register$', account.register)
 ]
 
 
