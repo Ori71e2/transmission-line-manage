@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 """
 Django settings for website project.
 
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     'backend',   # 新建App 
 ]
 
-
+# 暂时关闭csrf验证
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -103,14 +104,7 @@ MYSQL_HOST = MYSQL_SETITNG['host']
 MYSQL_PORT = MYSQL_SETITNG['port']
 
 # 连接后设置数据编码
-INIT_COMMAND =  'set character_set_client = utf8mb4,' \
-                'character_set_server = utf8mb4,' \
-                'character_set_connection = utf8mb4,' \
-                'character_set_database = utf8mb4,' \
-                'character_set_results = utf8mb4,' \
-                'collation_connection = utf8mb4_general_ci,' \
-                'collation_database = utf8mb4_general_ci,' \
-                'collation_server = utf8mb4_general_ci;'
+INIT_COMMAND =  ''
 
 DATABASES = {
     'default': {
@@ -120,9 +114,9 @@ DATABASES = {
         'PASSWORD': MYSQL_PASSWORD,
         'HOST': MYSQL_HOST,
         'PORT': MYSQL_PORT,
-        'OPTIONS': {
+        'OPTIOINS': {
             #'init_command': INIT_COMMAND
-        },
+        }
     }
 }
 
@@ -164,3 +158,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# 设置编码 
