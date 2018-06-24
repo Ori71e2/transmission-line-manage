@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 __all__ = ['account_urls', 'test_urls']
 
 from . account_urls import urlpatterns as account_urls

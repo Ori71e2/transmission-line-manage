@@ -19,14 +19,14 @@ from django.contrib import admin
 from django.views.generic import TemplateView  
 # from modules_urls.account_urls import urlpatterns as account_urlpatterns
 #from modules_urls import account_urls, test_urls
-from . import modules_urls
+from modules_urls import account_urls, test_urls
 from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', views.index),
-]   + modules_urls.account_urls \
-    + modules_urls.test_urls
+]   + account_urls \
+    + test_urls
 
 
 print("url")

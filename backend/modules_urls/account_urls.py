@@ -20,7 +20,9 @@ from modules import account
 urlpatterns = [
     # 一级路径必须带/结尾
     re_path(r'^account/$', TemplateView.as_view(template_name="index.html")),
-    re_path(r'^account/register$', account.register)
+    re_path(r'^account/register$', account.register),
+    re_path(r'^account/get_user_profile$', account.get_user_profile),
+    re_path(r'^account/set_user_profile$', account.set_user_profile)
 ]
 
 

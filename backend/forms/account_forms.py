@@ -1,6 +1,7 @@
+# -*- coding:utf-8 -*-
 from django import forms
 from django.contrib.auth.models import User
-from models import account
+from models.account_tb import UserProfile, UserSalt
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -19,3 +20,13 @@ class RegistrationForm(forms.ModelForm):
         if data['password'] != data['password2']:
             raise forms.ValidationError("passwords do not match.")
         return data['password2']
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('nickname', 'phone_1', 'phone_2', 'qq', 'wechat')
+
+class UserSalt(forms.ModelForm):
+    class Meta:
+        model = UserSalt
+        fields = ('salt')
