@@ -15,14 +15,16 @@ Including another URLconf
 
 from django.urls import path,re_path, include
 from django.views.generic import TemplateView  
-from modules import account
+from modules.account import (register, get_user_profile, set_user_profile, login, logout)
 
 urlpatterns = [
     # 一级路径必须带/结尾
     re_path(r'^account/$', TemplateView.as_view(template_name="index.html")),
-    re_path(r'^account/register$', account.register),
-    re_path(r'^account/get_user_profile$', account.get_user_profile),
-    re_path(r'^account/set_user_profile$', account.set_user_profile)
+    re_path(r'^account/register$', register),
+    re_path(r'^account/get_user_profile$', get_user_profile),
+    re_path(r'^account/set_user_profile$', set_user_profile),
+    re_path(r'^account/login$', login),
+    re_path(r'^account/logout$', logout),
 ]
 
 
