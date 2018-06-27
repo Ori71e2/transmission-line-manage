@@ -8,7 +8,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 
 from forms.account_forms import LoginForm
-
+from modules.RESPONSE import CODE_MSG
+import json
 @method_decorator(sensitive_post_parameters())
 @method_decorator(csrf_protect)
 @method_decorator(never_cache)
@@ -21,15 +22,12 @@ def login(request):
         user = authenticate(username=username, password=password)
     if user is not None and user.is_active:
         auth_login(request, user)
-        return HttpResponse(True)
+        return HttpResponse(json.dumps(CODE_MSG['success']))
     else:
-        return HttpResponse(False)
-
-
-
+        return HttpResponse(json.dumps(CODE_MSG['login_failed'])
 
 
 def logout(request):
     auth_logout(request)
-    return HttpResponse(True)
+    return HttpResponse(json.dumps(CODE_MSG['success']))
 

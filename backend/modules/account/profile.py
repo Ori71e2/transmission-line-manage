@@ -1,16 +1,19 @@
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
 from models.account_tb import UserProfile
 from django.contrib.auth.models import User
 
 from forms.account_forms import UserProfileForm
-@login_required(login_url='/account/login')
+from modules.RESPONSE import CODE_MSG
+import json
+from modules.decorator import auth_check
+
+@auth_check()
 def get_user_profile(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
     return HttpResponse({'user': user, 'user_pfofile': user_profile})
 # 这里注意越权漏洞攻击
-@login_required(login_url='/account/login')
+@auth_check()
 def set_user_profile(request):
     print(request.POST)
     #user_profile = UserProfile.objects.get(user=request.user)
