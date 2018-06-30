@@ -1,17 +1,16 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from models.account_tb import UserProfile
 from django.contrib.auth.models import User
 
 from forms.account_forms import UserProfileForm
 from modules.RESPONSE import CODE_MSG
-import json
 from modules.decorator import auth_check
 
 @auth_check()
 def get_user_profile(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
-    return HttpResponse({'user': user, 'user_pfofile': user_profile})
+    return JsonResponse({'user': user, 'user_pfofile': user_profile})
 # 这里注意越权漏洞攻击
 @auth_check()
 def set_user_profile(request):
@@ -31,8 +30,8 @@ def set_user_profile(request):
             user_profile.qq = user_profile_data['qq']
             user_profile.wechat = user_profile_data['wechat']
             user_profile.save()
-            return HttpResponse(True)
+            return JsonResponse(CODE_MSG['success'])
         else:
-            return HttpResponse(True)
+            return JsonResponse(CODE_MSG['profile_set_failed'])
     else: 
-        return HttpResponse(True)
+        return JsonResponse(CODE_MSG['profile_set_failed'])

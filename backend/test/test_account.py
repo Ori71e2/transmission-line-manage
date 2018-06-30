@@ -2,12 +2,16 @@
 
 from django.test import TestCase, Client
 from forms import account_forms
-
+from django.middleware.csrf import get_token, rotate_token
 class RegistrationFormTEstCase(TestCase):
-    def setUp(self):
-        self.registration()
+    cookies = '';
 
-    def test_set_user_profile(self):
+    def setUp(self):
+        self.get_csrf_token()
+        #self.registration()
+        #self.login()
+
+    def set_user_profile(self):
         account_data = {
             'username': 'ori71e1',
             'nickname': 'ori71e1',
@@ -37,3 +41,13 @@ class RegistrationFormTEstCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'status')
         self.assertTrue('success' in response.content)
+
+    #def logout(self):
+        
+    def get_csrf_token(self):
+        client = Client(enforce_csef_checks=False, HTTP_USER_AGENT='Mozilla/5.0')
+        response = client.get('/account/get_csrf_token')    
+        self.cookies = response.COOKIES
+        print(self.cookies)
+
+

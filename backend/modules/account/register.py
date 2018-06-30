@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 from forms.account_forms import RegistrationForm, UserProfileForm,UserSaltForm
 from models.account_tb import UserProfile, UserSalt
 from modules.RESPONSE import CODE_MSG
-import json
 # Create your views here.
 def register(request) :
     if request.method == 'POST':
@@ -14,8 +13,8 @@ def register(request) :
             new_user.save()
             UserProfile.objects.create(user=new_user)
             UserSalt.objects.create(user=new_user)
-            return HttpResponse(json.dumps(CODE_MSG['success']))
+            return JsonResponse(CODE_MSG['success'])
         else: 
-            return HttpResponse(json.dumps(CODE_MSG['success']))
+            return JsonResponse(CODE_MSG['success'])
     else:
-        return HttpResponse(json.dumps(CODE_MSG['success']))
+        return JsonResponse(CODE_MSG['success'])
