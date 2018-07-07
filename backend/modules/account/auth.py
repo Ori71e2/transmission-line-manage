@@ -10,13 +10,13 @@ from django.views.decorators.debug import sensitive_post_parameters
 from forms.account_forms import LoginForm
 from modules.RESPONSE import CODE_MSG
 import json
-@method_decorator(sensitive_post_parameters())
-@method_decorator(csrf_protect)
-@method_decorator(never_cache)
+sensitive_post_parameters()
+@csrf_protect
+@never_cache
 def login(request):
     login_form = LoginForm(request.POST)
     if login_form.is_valid():
-        login_data = login_form.clean_data
+        login_data = login_form.cleaned_data
         username = login_data['username']
         password = login_data['password']
         user = authenticate(username=username, password=password)

@@ -5,5 +5,6 @@ CODE_MSG = {
     'login_failed': {'code': 2, 'msg': 'login failed'},
     'auth_check_failed': {'code': 3, 'msg': 'auth check failed'},
     'permission_check_failed': {'code': 4, 'msg': 'permission check failed'},
-    'profile_set_failed': {'code': 5, 'msg': 'profile set failed'}
+    'profile_set_failed': {'code': 5, 'msg': 'profile set failed'},
+    'register_failed': {'code': 6, 'msg': 'register failed'}
 }

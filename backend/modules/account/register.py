@@ -15,6 +15,6 @@ def register(request) :
             UserSalt.objects.create(user=new_user)
             return JsonResponse(CODE_MSG['success'])
         else: 
-            return JsonResponse(CODE_MSG['success'])
+            return JsonResponse(CODE_MSG['register_failed'])
     else:
-        return JsonResponse(CODE_MSG['success'])
+        return JsonResponse(CODE_MSG['register_failed'])

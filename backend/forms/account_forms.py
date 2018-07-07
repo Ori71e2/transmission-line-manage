@@ -26,7 +26,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('nickname', 'phone_1', 'phone_2', 'qq', 'wechat')
 
-class UserSalt(forms.ModelForm):
+class UserSaltForm(forms.ModelForm):
     class Meta:
         model = UserSalt
-        fields = ('salt')
+        fields = ('salt',)

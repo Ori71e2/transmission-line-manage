@@ -28,6 +28,7 @@ urlpatterns = [
 ]   + account_urls \
     + test_urls
 
-
-print("url")
-print(urlpatterns)
+print("-"*70)
+print("Url Patterns：")
+print("%s" % urlpatterns)
+print("-"*70)

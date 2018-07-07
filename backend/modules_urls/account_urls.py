@@ -15,7 +15,7 @@ Including another URLconf
 
 from django.urls import path,re_path, include
 from django.views.generic import TemplateView  
-from modules.account import (register, get_user_profile, set_user_profile, login, logout)
+from modules.account import (register, get_user_profile, set_user_profile, login, logout, get_csrf_token)
 
 urlpatterns = [
     # 一级路径必须带/结尾
@@ -25,6 +25,7 @@ urlpatterns = [
     re_path(r'^account/set_user_profile$', set_user_profile),
     re_path(r'^account/login$', login),
     re_path(r'^account/logout$', logout),
+    re_path(r'^account/get_csrf_token$', get_csrf_token)
 ]
 
 
