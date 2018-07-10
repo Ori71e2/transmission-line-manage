@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 CODE_MSG = {
-    'success': {'code': 1, 'msg': 'success'},
-    'login_failed': {'code': 2, 'msg': 'login failed'},
-    'auth_check_failed': {'code': 3, 'msg': 'auth check failed'},
-    'permission_check_failed': {'code': 4, 'msg': 'permission check failed'},
-    'profile_set_failed': {'code': 5, 'msg': 'profile set failed'},
-    'register_failed': {'code': 6, 'msg': 'register failed'}
+    'system_busy': {'code': -1, 'msg': 'success'},
+    'success': {'code': 200, 'msg': 'success', 'data':{}},
+    'login_failed': {'code': 400101, 'msg': 'login failed'},
+    'auth_check_failed': {'code': 400102, 'msg': 'auth check failed'},
+    'permission_check_failed': {'code': 400103, 'msg': 'permission check failed'},
+    'register_failed': {'code': 400104, 'msg': 'register failed'},
+    'account_exist': {'code': 400105, 'msg': 'register failed, account'},
+    'profile_set_failed': {'code': 400201, 'msg': 'profile set failed'},
 }

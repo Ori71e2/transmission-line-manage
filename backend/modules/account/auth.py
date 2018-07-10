@@ -10,7 +10,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from forms.account_forms import LoginForm
 from modules.RESPONSE import CODE_MSG
 import json
-sensitive_post_parameters()
+@sensitive_post_parameters()
 @csrf_protect
 @never_cache
 def login(request):

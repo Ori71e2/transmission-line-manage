@@ -17,6 +17,12 @@ class UserProfile(models.Model):
         app_label = 'backend'
         verbose_name = '用户详细信息'
         db_table = 'account_user_profile'
+        permissions = (
+            ('view_user_profile', 'View UserProfile'),
+            ('change_user_profile', 'Change User Profile'),
+            ('remove_user_profile', 'Remove User Profile'),
+            ('delete_user_profile', 'Delete User Profile')
+        )
         
     def __str__(self):
         return str(self.nickname)
@@ -29,6 +35,12 @@ class UserSalt(models.Model):
         app_label = 'backend'
         verbose_name = '加密用盐值'
         db_table = 'account_user_salt'
+        permissions = (
+            ('view_salt', 'View Salt'),
+            ('change_salt', 'Change Salt'),
+            ('remove_salt', 'Remove Salt'),
+            ('delete_salt', 'Delete Salt')
+        )
         
     def __str__(self):
         return str(self.salt)

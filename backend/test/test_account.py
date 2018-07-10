@@ -6,6 +6,8 @@ from django.middleware.csrf import get_token, rotate_token
 from http import cookies
 from pprint import pprint
 import json
+
+# 每一个test创建一个测试实例
 class RegistrationFormTEstCase(TestCase):
     def __init__(self, arg):    
         super(RegistrationFormTEstCase, self).__init__(arg)
@@ -61,7 +63,9 @@ class RegistrationFormTEstCase(TestCase):
         response = self.client.post('/account/get_user_profile', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
-        print("[+]Get User Profile: %s" % json_data)   
+        print("[+]Get User Profile: %s" % json_data)  
+        print("[+]User Profile Data: %s" % json_data['data'])   
+
 
     def registration(self):
         register_data = {'username': 'ori71e1', 'password': 'ori71e1', 'password2': 'ori71e1'}
