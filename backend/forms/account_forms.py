@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from django import forms
 from django.contrib.auth.models import User
-from models.account_tb import UserProfile, UserSalt
+from model.account_tb import UserProfile, UserSalt
 
 class LoginForm(forms.Form):
     username = forms.CharField()

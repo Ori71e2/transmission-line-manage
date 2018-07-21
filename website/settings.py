@@ -19,7 +19,7 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 将新建的app放在backend中，这里设置app搜索路径
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+#sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # 添加模块搜索路径
 sys.path.append(os.path.join(BASE_DIR, 'backend'))

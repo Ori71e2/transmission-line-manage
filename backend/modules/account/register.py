@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from forms.account_forms import RegistrationForm, UserProfileForm,UserSaltForm
-from models.account_tb import UserProfile, UserSalt
+from model.account_tb import UserProfile, UserSalt
 from modules.RESPONSE import CODE_MSG
 from guardian.shortcuts import assign_perm
 # Create your views here.

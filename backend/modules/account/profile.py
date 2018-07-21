@@ -1,5 +1,5 @@
 from django.http import JsonResponse, HttpResponse
-from models.account_tb import UserProfile
+from model.account_tb import UserProfile
 from django.contrib.auth.models import User
 
 from forms.account_forms import UserProfileForm
