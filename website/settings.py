@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'guardian',
-    'backend',   # 新建App 
+    'backend'  # 新建App 
 ]
 
 # 暂时关闭csrf验证
@@ -162,3 +162,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # 设置编码 
+
+AUTH_USER_MODEL = 'backend.User'

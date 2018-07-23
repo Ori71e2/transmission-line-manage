@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 from django import forms
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from model.account_tb import UserProfile, UserSalt
-
+from django.conf import settings
+User = settings.AUTH_USER_MODEL 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)

@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 import uuid
-
+from django.conf import settings
+User = settings.AUTH_USER_MODEL 
 class UserProfile(models.Model):
     # 用户名可以是邮箱、英文数字混合、手机号等等，但一定要唯一
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100, verbose_name='昵称', unique=True)
     phone_1 = models.CharField(max_length=20, verbose_name='手机号码1')
     phone_2 = models.CharField(max_length=20, verbose_name='手机号码2')
@@ -29,7 +30,7 @@ class UserProfile(models.Model):
 
 class UserSalt(models.Model):
     salt = models.CharField(max_length=10, verbose_name='加密用盐值')
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         app_label = 'backend'

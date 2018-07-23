@@ -1,11 +1,12 @@
 from django.http import JsonResponse, HttpResponse
 from model.account_tb import UserProfile
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
 from forms.account_forms import UserProfileForm
 from modules.RESPONSE import CODE_MSG
 from modules.decorator import auth_check
-
+from django.conf import settings
+User = settings.AUTH_USER_MODEL 
 @auth_check
 def get_user_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)

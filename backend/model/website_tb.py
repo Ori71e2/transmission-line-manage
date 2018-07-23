@@ -1,18 +1,19 @@
 # -*- coding:utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 import uuid
-
-class UserWebsite(models.Model):
+from django.conf import settings
+User = settings.AUTH_USER_MODEL 
+class Website(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='用户网站名称', unique=True)
     page_count = models.CharField(max_length=20, verbose_name='网站下属导航页面数量')
 
     class Meta:
         app_label = 'backend'
         verbose_name = '用户收藏网页总览'
-        db_table = 'user_website'
+        db_table = 'website'
         permissions = (
             ('view_user_website', 'View UserWebsite'),
             ('change_user_website', 'Change User Website'),
