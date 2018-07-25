@@ -17,9 +17,9 @@ def login(request):
     login_form = LoginForm(request.POST)
     if login_form.is_valid():
         login_data = login_form.cleaned_data
-        username = login_data['username']
+        email = login_data['email']
         password = login_data['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
     if user is not None and user.is_active:
         auth_login(request, user)
         return JsonResponse(CODE_MSG['success'])

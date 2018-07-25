@@ -22,14 +22,14 @@ class Website(models.Model):
         )
         
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 class WebsitePage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100, verbose_name='页面名称')
     data = models.CharField(max_length=100, verbose_name='json数据')
     order = models.CharField(max_length=10, verbose_name='显示顺序')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_website_id = models.UUIDField(default=None, null=True, blank=True)
 
     class Meta:
@@ -44,14 +44,14 @@ class WebsitePage(models.Model):
         )
         
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 
 class WebsitePanel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100, verbose_name='导航页中的一栏')
     order = models.CharField(max_length=10, verbose_name='显示顺序')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_website_id = models.UUIDField(default=None, null=True, blank=True)
     website_page_id = models.UUIDField(default=None, null=True, blank=True)
     class Meta:
@@ -66,7 +66,7 @@ class WebsitePanel(models.Model):
         )
         
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 
 class WebsiteUrl(models.Model):
@@ -74,7 +74,7 @@ class WebsiteUrl(models.Model):
     name = models.CharField(max_length=100, verbose_name='')
     column = models.CharField(max_length=10, verbose_name='列数')
     line = models.CharField(max_length=10, verbose_name='行数')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_website_id = models.UUIDField(default=None, null=True, blank=True)
     website_page_id = models.UUIDField(default=None, null=True, blank=True)
     website_panel_id = models.UUIDField(default=None, null=True, blank=True)
@@ -90,4 +90,4 @@ class WebsiteUrl(models.Model):
         )
         
     def __str__(self):
-        return str(self.name)
+        return self.name

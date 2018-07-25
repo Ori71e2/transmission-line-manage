@@ -34,6 +34,7 @@ class RegistrationFormTEstCase(TestCase):
     def test_user_profile(self):
         self.set_user_profile()
         self.get_user_profile()
+        pass
 
 
     # 此处要么自己设置request要么使用client内置的登录方式
@@ -53,11 +54,6 @@ class RegistrationFormTEstCase(TestCase):
 
     def get_user_profile(self):
         account_data = {
-            'nickname': 'ori71e1',
-            'phone_1':  '1234567890',
-            'phone_2': '12',
-            'qq': '12',
-            'wechat': '12'
         }   
         account_data['X-CSRFToken'] = self.csrf_token
         response = self.client.post('/account/get_user_profile', account_data)
@@ -68,7 +64,7 @@ class RegistrationFormTEstCase(TestCase):
 
 
     def registration(self):
-        register_data = {'username': 'ori71e1', 'password': 'ori71e1', 'password2': 'ori71e1'}
+        register_data = {'email': 'ori71e1@gmail.com', 'password': 'ori71e1', 'password2': 'ori71e1'}
         register_data['X-CSRFToken'] = self.csrf_token
         response = self.client.post('/account/register', register_data)
         json_data = self.value_to_json(response.getvalue())
@@ -78,7 +74,7 @@ class RegistrationFormTEstCase(TestCase):
     def login(self):
         #self.client.login(username='ori71e1', password='ori71e1')
         
-        login_data = {'username': 'ori71e1', 'password': 'ori71e1'}
+        login_data = {'email': 'ori71e1@gmail.com', 'password': 'ori71e1'}
         login_data['X-CSRFToken'] = self.csrf_token
         response = self.client.post('/account/login', login_data)        
         json_data = self.value_to_json(response.getvalue())

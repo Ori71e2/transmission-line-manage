@@ -1,3 +1,4 @@
+# Create your models here.
 # -*- coding:utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
@@ -27,31 +28,33 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Super must have is_superuser=True.')
         return self._create_user(email, password, **extra_fields)
-class User(AbstractBaseUser, PermissionsMixin):   # 定义自己的用户表
+
+
+class User(AbstractBaseUser):   # 定义自己的用户表
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
-    username = models.CharField(max_length=100, verbose_name='用户名', unique=True)
+    username = models.CharField(max_length=100, verbose_name='用户名')
     is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=True)
     #is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-
+    class Meta:
+        verbose_name = '用户详细信息'
+        db_table = 'account_user'
     def get_full_name(self):
         """
         Return the first_name plus the last_name, with a space in between.
         """
-        return str(self.email)
+        return self.email
 
     def get_short_name(self):
         """Return the short name for the user."""
-        return str(self.email)
+        return self.email
         
     def __str__(self):
-        return str(self.email)
+        return self.email
       
-
-
 

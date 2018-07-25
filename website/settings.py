@@ -48,9 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'guardian',
+    'account',
     'backend'  # 新建App 
 ]
-
 # 暂时关闭csrf验证
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -163,4 +163,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # 设置编码 
 
-AUTH_USER_MODEL = 'backend.User'
+AUTH_USER_MODEL = 'account.User'
