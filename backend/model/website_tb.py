@@ -6,10 +6,9 @@ from django.conf import settings
 User = settings.AUTH_USER_MODEL 
 class Website(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
-    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='用户网站名称', unique=True)
     page_count = models.CharField(max_length=20, verbose_name='网站下属导航页面数量')
-
+    user_id = models.UUIDField(default=None, null=True, blank=True)
     class Meta:
         app_label = 'backend'
         verbose_name = '用户收藏网页总览'
@@ -27,10 +26,10 @@ class Website(models.Model):
 class WebsitePage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100, verbose_name='页面名称')
-    data = models.CharField(max_length=100, verbose_name='json数据')
+    page_data = models.CharField(max_length=100, verbose_name='json数据')
     order = models.CharField(max_length=10, verbose_name='显示顺序')
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_website_id = models.UUIDField(default=None, null=True, blank=True)
+    user_id = models.UUIDField(default=None, null=True, blank=True)
+    website_id = models.UUIDField(default=None, null=True, blank=True)
 
     class Meta:
         app_label = 'backend'
@@ -51,8 +50,8 @@ class WebsitePanel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100, verbose_name='导航页中的一栏')
     order = models.CharField(max_length=10, verbose_name='显示顺序')
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_website_id = models.UUIDField(default=None, null=True, blank=True)
+    user_id = models.UUIDField(default=None, null=True, blank=True)
+    website_id = models.UUIDField(default=None, null=True, blank=True)
     website_page_id = models.UUIDField(default=None, null=True, blank=True)
     class Meta:
         app_label = 'backend'
@@ -74,8 +73,8 @@ class WebsiteUrl(models.Model):
     name = models.CharField(max_length=100, verbose_name='')
     column = models.CharField(max_length=10, verbose_name='列数')
     line = models.CharField(max_length=10, verbose_name='行数')
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_website_id = models.UUIDField(default=None, null=True, blank=True)
+    user_id = models.UUIDField(default=None, null=True, blank=True)
+    website_id = models.UUIDField(default=None, null=True, blank=True)
     website_page_id = models.UUIDField(default=None, null=True, blank=True)
     website_panel_id = models.UUIDField(default=None, null=True, blank=True)
     class Meta:
