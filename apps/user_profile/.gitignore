@@ -1,0 +1,9 @@
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+*.pyc
+_pycache_/*.pyc
+migrations/*init*
+migrations/_pycache_/*.pyc
