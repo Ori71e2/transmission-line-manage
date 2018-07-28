@@ -2,11 +2,10 @@
 from django import forms
 #from django.contrib.auth.models import User
 from .models import Website, WebsitePage, WebsitePanel, WebsiteUrl
-class WebsiteDorm(forms.Form):
+class WebsiteForm(forms.Form):
     class Meta:
         model = Website
         fields = ('name', 'page_count', 'user_id')
-
 
 class WebsitePageForm(forms.Form):
     class Meta:

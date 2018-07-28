@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView  
 
 urlpatterns = [
-    re_path(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     #re_path(r'^$', include('account.urls')),
-    re_path(r'^account/', include('user.urls')),
-    re_path(r'^account_profile/', include('user_profile.urls')),
+    path('account/', include('user.urls')),
+    re_path('account_profile/', include('user_profile.urls')),
 
 ]

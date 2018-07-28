@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class User(AbstractBaseUser):   # 定义自己的用户表
+class User(AbstractBaseUser, PermissionsMixin):   # 定义自己的用户表
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     username = models.CharField(max_length=100, verbose_name='用户名')
@@ -43,7 +43,7 @@ class User(AbstractBaseUser):   # 定义自己的用户表
     REQUIRED_FIELDS = []
     class Meta:
         verbose_name = '用户详细信息'
-        db_table = 'user'
+        db_table = 'auth_user'
     def get_full_name(self):
         """
         Return the first_name plus the last_name, with a space in between.
@@ -65,7 +65,7 @@ class UserSalt(models.Model):
 
     class Meta:
         verbose_name = '加密用盐值'
-        db_table = 'user_salt'
+        db_table = 'auth_user_salt'
 
         
     def __str__(self):

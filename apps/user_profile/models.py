@@ -14,7 +14,7 @@ class UserProfile(models.Model):
 
     class Meta:
         verbose_name = '用户详细信息'
-        db_table = 'user_profile'
+        db_table = 'auth_user_profile'
         permissions = (
             ('view_user_profile', 'View UserProfile'),
             ('change_user_profile', 'Change User Profile'),
