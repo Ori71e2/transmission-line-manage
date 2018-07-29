@@ -31,7 +31,7 @@ class RegistrationFormTEstCase(TestCase):
         print("\n[+]Test CSRF begin:")
         print("[+]CSRF Token: %s" % self.csrf_token)
     def test_user_profile(self):
-        self.set_user_profile()
+        #self.set_user_profile()
         self.get_user_profile()
         pass
 
@@ -51,11 +51,11 @@ class RegistrationFormTEstCase(TestCase):
         self.assertEqual(response.status_code, 200)
         print("[+]Set User Profile: %s" % json_data)    
 
-    def get_user_profile(self):
+    def get_user_website(self):
         account_data = {
         }   
         account_data['X-CSRFToken'] = self.csrf_token
-        response = self.client.post('/account_profile/get_user_profile', account_data)
+        response = self.client.post('/account_profile/get_user_website', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
         print("[+]Get User Profile: %s" % json_data)  

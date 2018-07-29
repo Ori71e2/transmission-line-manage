@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from user.forms import RegistrationForm, UserSaltForm
 from user_profile.models import UserProfile
 from user.models import UserSalt
+from website_nav.models import Website, WebsitePage, WebsitePanel, WebsiteUrl
 from common_modules import CODE_MSG
 from guardian.shortcuts import assign_perm
 from django.contrib.auth import get_user_model
