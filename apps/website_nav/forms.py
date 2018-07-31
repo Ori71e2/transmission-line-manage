@@ -5,7 +5,7 @@ from .models import Website, WebsitePage, WebsitePanel, WebsiteUrl
 class WebsiteForm(forms.Form):
     class Meta:
         model = Website
-        fields = ('name', 'page_count', 'user_id')
+        fields = ('name', 'page_count')
 
 class WebsitePageForm(forms.Form):
     class Meta:

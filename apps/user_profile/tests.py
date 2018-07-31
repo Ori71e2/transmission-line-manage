@@ -26,10 +26,12 @@ class RegistrationFormTEstCase(TestCase):
         print("[+]Test End")
         print("-"*70)
 
-   
+    """
     def test_csrf(self):
+        pass
         print("\n[+]Test CSRF begin:")
         print("[+]CSRF Token: %s" % self.csrf_token)
+    """
     def test_user_profile(self):
         self.set_user_profile()
         self.get_user_profile()

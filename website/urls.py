@@ -20,6 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #re_path(r'^$', include('account.urls')),
     path('account/', include('user.urls')),
-    re_path('account_profile/', include('user_profile.urls')),
-
+    path('account_profile/', include('user_profile.urls')),
+    path('website_nav/', include('website_nav.urls')),
 ]

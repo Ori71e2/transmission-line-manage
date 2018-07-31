@@ -4,7 +4,7 @@ import uuid
 
 class Website(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
-    name = models.CharField(max_length=100, verbose_name='用户网站名称', unique=True)
+    name = models.CharField(max_length=100, verbose_name='用户网站名称')
     page_count = models.CharField(max_length=20, verbose_name='网站下属导航页面数量')
     user_id = models.UUIDField(default=None, null=True, blank=True)
     class Meta:

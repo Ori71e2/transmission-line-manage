@@ -19,7 +19,6 @@ def register(request) :
             if new_user.save() == 0:
                 print('failed')
             #print (new_user.id)
-            new_user_profile = UserProfile.objects.create(user_id=new_user.id)
             new_user_salt = UserSalt.objects.create(user_id=new_user.id)
             #assign_perm('view_user_profile', new_user, new_user_profile)
             #assign_perm('change_user_profile', new_user, new_user_profile)

@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     phone_2 = models.CharField(max_length=20, verbose_name='手机号码2')
     qq = models.CharField(max_length=20, verbose_name='qq号码')
     wechat = models.CharField(max_length=100, verbose_name='微信号')
-    user_id = models.UUIDField(default=None, null=True, blank=True, verbose_name='用户信息表')
+    user_id = models.UUIDField(default=None, null=True, blank=True, verbose_name='用户信息表', unique=True)
 
     class Meta:
         verbose_name = '用户详细信息'
