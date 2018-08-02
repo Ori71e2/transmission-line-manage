@@ -40,7 +40,7 @@ class RegistrationFormTEstCase(TestCase):
     def set_website(self):
         account_data = {
             "name": "ori71e1 web nav",
-            "page_count":  "2"
+            "page_count":  ""
         }   
         account_data["X-CSRFToken"] = self.csrf_token
         response = self.client.post('/website_nav/set_website', account_data)

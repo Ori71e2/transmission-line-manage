@@ -2,6 +2,7 @@ from django.http import JsonResponse, HttpResponse
 from website_nav.models import Website
 from website_nav.forms import WebsiteForm
 from common_modules.RESPONSE import CODE_MSG
+import json
 #from modules.decorator import auth_check
 
 #@auth_check
@@ -25,7 +26,6 @@ def set_website(request):
         print("[+]user has permission")
     """
     if request.method == 'POST':
-        # 表单匹配POST中相应的数据，多余的不匹配
         website_form = WebsiteForm(request.POST)
         if website_form.is_valid():
             website_data = website_form.cleaned_data
