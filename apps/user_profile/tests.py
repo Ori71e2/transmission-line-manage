@@ -48,7 +48,7 @@ class RegistrationFormTEstCase(TestCase):
             'wechat': '12'
         }   
         account_data['X-CSRFToken'] = self.csrf_token
-        response = self.client.post('/account_profile/set_user_profile', account_data)
+        response = self.client.post('/user_profile/set_user_profile', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
         print("[+]Set User Profile: %s" % json_data)    
@@ -57,7 +57,7 @@ class RegistrationFormTEstCase(TestCase):
         account_data = {
         }   
         account_data['X-CSRFToken'] = self.csrf_token
-        response = self.client.post('/account_profile/get_user_profile', account_data)
+        response = self.client.post('/user_profile/get_user_profile', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
         print("[+]Get User Profile: %s" % json_data)  
@@ -67,7 +67,7 @@ class RegistrationFormTEstCase(TestCase):
     def registration(self):
         register_data = {'email': 'ori71e1@gmail.com', 'password': 'ori71e1', 'password2': 'ori71e1'}
         register_data['X-CSRFToken'] = self.csrf_token
-        response = self.client.post('/account/register', register_data)
+        response = self.client.post('/user/register', register_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
         print("[+]Registration Response: %s" % json_data)
@@ -77,7 +77,7 @@ class RegistrationFormTEstCase(TestCase):
         
         login_data = {'email': 'ori71e1@gmail.com', 'password': 'ori71e1'}
         login_data['X-CSRFToken'] = self.csrf_token
-        response = self.client.post('/account/login', login_data)        
+        response = self.client.post('/user/login', login_data)        
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
         print("[+]Login Response: %s" % json_data)
@@ -85,7 +85,7 @@ class RegistrationFormTEstCase(TestCase):
     #def logout(self):
         
     def get_csrf_token(self):
-        response = self.client.get('/account/get_csrf_token') 
+        response = self.client.get('/user/get_csrf_token') 
         self.cookies = response.cookies
         self.csrf_token = self.parse_cookie(str(self.cookies['csrftoken']))['csrftoken']
         

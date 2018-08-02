@@ -4,10 +4,9 @@ from website_nav.forms import WebsiteForm
 from common_modules.RESPONSE import CODE_MSG
 #from modules.decorator import auth_check
 
-from django.contrib.auth import get_user_model
-User = get_user_model()
 #@auth_check
 def get_website(request):
+    print("Get Website")
     website = Website.objects.get(user_id=request.user.id)
     id = website.id
     name = website.name
@@ -20,7 +19,6 @@ def get_website(request):
 #@auth_check()
 
 def set_website(request):
-
     website = Website.objects.get(user_id=request.user.id)
     """
     if user.has_perm('change_user_profile', user_profile):
@@ -31,6 +29,7 @@ def set_website(request):
         website_form = WebsiteForm(request.POST)
         if website_form.is_valid():
             website_data = website_form.cleaned_data
+            print(website_data)
             website.name = website_data['name']
             website.page_count = website_data['page_count']
             website.save()

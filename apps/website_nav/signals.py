@@ -10,7 +10,7 @@ from django.apps import apps
 #from website_nav.models import Website
 #import  apps   
 #Website = apps.get_model("WebsiteNavConfig","Website")
-@receiver(post_save, sender=User)
+#@receiver(post_save, sender=User)
 def create_user_website(sender, instance, created, **kwargs):
     print("Website Nav Signals")
     if created:
