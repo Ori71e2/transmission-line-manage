@@ -31,7 +31,9 @@ def set_user_profile(request):
     """
     if request.method == 'POST':
         # 表单匹配POST中相应的数据，多余的不匹配
-        user_profile_form = UserProfileForm(request.POST)
+        print(request.POST)
+        user_profile_form = UserProfileForm(data=request.POST)
+        #print(user_profile_form)
         if user_profile_form.is_valid():
             user_profile_data = user_profile_form.cleaned_data
             user_profile.nickname = user_profile_data['nickname']

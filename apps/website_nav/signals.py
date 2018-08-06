@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 from django.apps import apps
+import time
 
 #from django.contrib.auth import get_user_model
 #User = get_user_model()
@@ -18,6 +19,6 @@ def create_user_website(sender, instance, created, **kwargs):
         Website = apps.get_model("website_nav","Website")
         print(instance.id)
         Website.objects.create(user_id=instance.id)
-    
+        #Website.objects.create(user_id='ad31b5ca992211e8bea857759cd5cf61')   # 测试用
 
 

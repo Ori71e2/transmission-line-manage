@@ -9,6 +9,8 @@ import json
 def get_website(request):
     print("Get Website")
     website = Website.objects.get(user_id=request.user.id)
+    website_list = Website.objects.all()
+    print(website_list)
     id = website.id
     name = website.name
     page_count = website.page_count
@@ -29,7 +31,6 @@ def set_website(request):
         website_form = WebsiteForm(request.POST)
         if website_form.is_valid():
             website_data = website_form.cleaned_data
-            print(website_data)
             website.name = website_data['name']
             website.page_count = website_data['page_count']
             website.save()

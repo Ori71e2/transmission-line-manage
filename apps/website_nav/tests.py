@@ -5,7 +5,7 @@ from django.middleware.csrf import get_token, rotate_token
 from http import cookies
 from pprint import pprint
 import json
-
+import time
 # 每一个test创建一个测试实例
 class RegistrationFormTEstCase(TestCase):
     def __init__(self, arg):    
@@ -39,8 +39,8 @@ class RegistrationFormTEstCase(TestCase):
     # 此处要么自己设置request要么使用client内置的登录方式
     def set_website(self):
         account_data = {
-            "name": "ori71e1 web nav",
-            "page_count":  ""
+            'name':'ori71e1webnav',
+            'page_count':  '1'
         }   
         account_data["X-CSRFToken"] = self.csrf_token
         response = self.client.post('/website_nav/set_website', account_data)
@@ -57,8 +57,8 @@ class RegistrationFormTEstCase(TestCase):
         response = self.client.post('/website_nav/get_website', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
-        print("[+]Get User Profile: %s" % json_data)  
-        print("[+]User Profile Data: %s" % json_data['data'])   
+        print("[+]Get Website Profile: %s" % json_data)  
+        print("[+]User Website Data: %s" % json_data['data'])   
 
         print("[+]Get User Website: %s" % response) 
 
