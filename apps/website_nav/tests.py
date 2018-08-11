@@ -44,11 +44,11 @@ class RegistrationFormTEstCase(TestCase):
         }   
         account_data["X-CSRFToken"] = self.csrf_token
         response = self.client.post('/website_nav/set_website', account_data)
-        #json_data = self.value_to_json(response.getvalue())
-        #self.assertEqual(response.status_code, 200)
-        #print("[+]Set User Profile: %s" % json_data)    
-
-        print("[+]Get User Website: %s" % response) 
+        json_data = self.value_to_json(response.getvalue())
+        self.assertEqual(response.status_code, 200)
+        print("[+]Set Website Data: %s" % json_data) 
+        if  'data' in json_data:
+            print("[+]User Website Data: %s" % json_data['data'])  
     
     def get_website(self):
         account_data = {
@@ -57,10 +57,9 @@ class RegistrationFormTEstCase(TestCase):
         response = self.client.post('/website_nav/get_website', account_data)
         json_data = self.value_to_json(response.getvalue())
         self.assertEqual(response.status_code, 200)
-        print("[+]Get Website Profile: %s" % json_data)  
-        print("[+]User Website Data: %s" % json_data['data'])   
-
-        print("[+]Get User Website: %s" % response) 
+        print("[+]Get Website Data: %s" % json_data) 
+        if  'data' in json_data:
+            print("[+]User Website Data: %s" % json_data['data'])   
 
     def registration(self):
         register_data = {'email': 'ori71e1@gmail.com', 'password': 'ori71e1', 'password2': 'ori71e1'}

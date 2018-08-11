@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.db import OperationalError, DataError, Error
 from django.http import JsonResponse, HttpResponse
 from website_nav.models import Website
 from website_nav.forms import WebsiteForm
@@ -8,9 +10,14 @@ import json
 #@auth_check
 def get_website(request):
     print("Get Website")
-    website = Website.objects.get(user_id=request.user.id)
-    website_list = Website.objects.all()
-    print(website_list)
+    try:
+        website = Website.objects.get(user_id=request.user.id)
+    except ObjectDoesNotExist:
+        return JsonResponse(CODE_MSG['object_does_not_exist'])
+    except MultipleObjectsReturned:
+        return JsonResponse(CODE_MSG['multiple_objects_returned'])
+    except Error:
+        return JsonResponse(CODE_MSG['database_error'])
     id = website.id
     name = website.name
     page_count = website.page_count
@@ -22,7 +29,14 @@ def get_website(request):
 #@auth_check()
 
 def set_website(request):
-    website = Website.objects.get(user_id=request.user.id)
+    try:
+        website = Website.objects.get(user_id=request.user.id)
+    except ObjectDoesNotExist:
+        return JsonResponse(CODE_MSG['object_does_not_exist'])
+    except MultipleObjectsReturned:
+        return JsonResponse(CODE_MSG['multiple_objects_returned'])
+    except Error:
+        return JsonResponse(CODE_MSG['database_error'])
     """
     if user.has_perm('change_user_profile', user_profile):
         print("[+]user has permission")
@@ -33,7 +47,10 @@ def set_website(request):
             website_data = website_form.cleaned_data
             website.name = website_data['name']
             website.page_count = website_data['page_count']
-            website.save()
+            try:
+                website.save()
+            except Error:
+                return JsonResponse(CODE_MSG['database_error'])
             return JsonResponse(CODE_MSG['success'])
         else:
             return JsonResponse(CODE_MSG['website_set_failed'])

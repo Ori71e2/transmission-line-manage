@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from django.db import Error
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
@@ -18,7 +19,10 @@ def create_user_website(sender, instance, created, **kwargs):
         print("created")
         Website = apps.get_model("website_nav","Website")
         print(instance.id)
-        Website.objects.create(user_id=instance.id)
+        try:
+            Website.objects.create(user_id=instance.id)
+        except Error:
+            pass
         #Website.objects.create(user_id='ad31b5ca992211e8bea857759cd5cf61')   # 测试用
 
 

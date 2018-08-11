@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from django.db import DataError, Error
 from django.http import JsonResponse, HttpResponse
 from user_profile.models import UserProfile
 from user_profile.forms import UserProfileForm
@@ -9,7 +11,14 @@ User = get_user_model()
 #@auth_check
 def get_user_profile(request):
     print (request.user)
-    user_profile = UserProfile.objects.get(user_id=request.user.id)
+    try:
+        user_profile = UserProfile.objects.get(user_id=request.user.id)
+    except ObjectDoesNotExist:
+        return JsonResponse(CODE_MSG['object_does_not_exist'])
+    except MultipleObjectsReturned:
+        return JsonResponse(CODE_MSG['multiple_objects_returned'])
+    except Error:
+        return JsonResponse(CODE_MSG['database_error'])
     id = user_profile.id
     nickname = user_profile.nickname
     phone_1 = user_profile.phone_1
@@ -23,7 +32,14 @@ def get_user_profile(request):
 # 这里注意越权漏洞攻击
 #@auth_check()
 def set_user_profile(request):
-    user_profile = UserProfile.objects.get(user_id=request.user.id)
+    try:
+        user_profile = UserProfile.objects.get(user_id=request.user.id)
+    except MultipleObjectsReturned:
+        return JsonResponse(CODE_MSG['multiple_objects_returned'])
+    except ObjectDoesNotExist:
+        return JsonResponse(CODE_MSG['object_does_not_exist'])
+    except Error:
+        return JsonResponse(CODE_MSG['database_error'])
     #user = User.objects.get(username=request.user.username)
     """
     if user.has_perm('change_user_profile', user_profile):
@@ -41,7 +57,10 @@ def set_user_profile(request):
             user_profile.phone_2 = user_profile_data['phone_2']
             user_profile.qq = user_profile_data['qq']
             user_profile.wechat = user_profile_data['wechat']
-            user_profile.save()
+            try:
+                user_profile.save()
+            except Error:
+                return JsonResponse(CODE_MSG['database_error'])
             return JsonResponse(CODE_MSG['success'])
         else:
             return JsonResponse(CODE_MSG['profile_set_failed'])
